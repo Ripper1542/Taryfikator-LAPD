@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taryfikator LAPD</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2b2b2b;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #tablet {
+            background-color: #000;
+            width: 800px;
+            height: 600px;
+            border-radius: 30px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            position: relative;
+        }
+
+        header {
+            background-color: #1c1c1c;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+            border-radius: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        #logo {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 100px;
+            height: auto;
+        }
+
+        .container {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #1c1c1c;
+            border-radius: 15px;
+            overflow-y: auto;
+            height: 400px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .nav-tabs a {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px 20px;
+            background-color: #2b2b2b;
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-tabs a:hover {
+            background-color: #444;
+        }
+
+        .nav-tabs a.active {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 1em;
+            border: 1px solid #ddd;
+        }
+
+        table th,
+        table td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #333;
+        }
+
+        table tr:hover {
+            background-color: #444;
+        }
+
+        footer {
+            text-align: center;
+            margin: 20px 0;
+            color: #777;
+        }
+
+        .summary-box {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #2b2b2b;
+            border: 1px solid #444;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            width: 300px;
+            border-radius: 10px;
+        }
+
+        .summary-box h2 {
+            margin: 0;
+            font-size: 1.5em;
+            text-align: center;
+        }
+
+        .summary-box p {
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .summary-box .close-btn,
+        .summary-box .reset-btn {
+            margin-top: 20px;
+            text-align: center;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .summary-box .reset-btn {
+            background-color: #d9534f;
+        }
+
+        .summary-box .reset-btn:hover {
+            background-color: #c9302c;
+        }
+
+        .summary-box .close-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="tablet">
+        <img src="./LAPD_logo.png" alt="LAPD Logo" id="logo">
+        <header>
+            <h1>Taryfikator LAPD</h1>
+        </header>
+
+        <div class="container">
+
+            <div class="nav-tabs">
+                <a href="#traffic" class="tab-link active">Wykroczenia Drogowe</a>
+                <a href="#parking" class="tab-link">Wykroczenia Parkingowe</a>
+                <a href="#criminal" class="tab-link">Przestępstwa Kryminalne</a>
+                <a href="#pedestrian" class="tab-link">Wykroczenia Pieszych</a>
+            </div>
+
+            <div id="traffic" class="tab-content active">
+                <h2>Wykroczenia Drogowe</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Wybierz</th>
+                            <th>Wykroczenie</th>
+                            <th>Kara</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox" value="Jazda bez prawa jazdy"></td>
+                            <td>Jazda bez prawa jazdy</td>
+                            <td>$500</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" value="Niewykonywanie poleceń funkcjonariusza"></td>
+                            <td>Niewykonywanie poleceń funkcjonariusza</td>
+                            <td>$750</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" value="Ucieczka przed policją"></td>
+                            <td>Ucieczka przed policją</td>
+                            <td>$1500</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" value="Przekroczenie prędkości o 50 km/h"></td>
+                            <td>Przekroczenie prędkości o 50 km/h</td>
+                            <td>$1000</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" value="Jazda pod wpływem alkoholu"></td>
+                            <td>Jazda pod wpływem alkoholu</td>
+                            <td>$2000</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" value="Przejechanie na czerwonym świetle"></td>
+                            <td>Przejechanie na czerwonym świetle</td>
+                            <td>$300</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="parking" class="tab-content">
+                <h2>Wykroczenia Parkingowe</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Wybierz</th>
+                            <th>Wykroczenie</th>
+                            <th>Kara</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox" value="Parkowanie w miejscu niedozwolonym"></td>
+                            <td>Parkowanie w miejscu niedozwolonym</td>
+                            <td>$200</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" value="Blokowanie drogi"></td>
+                            <td>Blokowanie drogi</td>
+                            <td>$350</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" value="Parkowanie na chodniku"></td>
+                            <td>Parkowanie na chodniku</td>
+                            <td>$150</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="criminal" class="tab-content">
+                <h2>Przestępstwa Kryminalne</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Wybierz</th>
+                            <th>Przestępstwo</th>
+                            <th>Kara</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox" value="Kradzież mienia"></td>
+                            <td>Kradzież mienia</td>
+                            <td>$3000</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" value="Napad z bronią w ręku"></td>
+                            <td>Napad z bronią w ręku</td>
+                            <td>$5000</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" value="Posiadanie narkotyków"></td>
+                            <td>Posiadanie narkotyków</td>
+                            <td>$2500</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" value="Przemoc domowa"></td>
+                            <td>Przemoc domowa</td>
+                            <td>$4000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="pedestrian" class="tab-content">
+                <h2>Wykroczenia Pieszych</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Wybierz</th>
+                            <th>Wykroczenie</th>
+                            <th>Kara</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox" value="Przechodzenie przez ulicę poza pasami"></td>
+                            <td>Przechodzenie przez ulicę poza pasami</td>
+                            <td>$100</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" value="Zakłócanie ruchu drogowego"></td>
+                            <td>Zakłócanie ruchu drogowego</td>
+                            <td>$150</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" value="Niewłaściwe korzystanie z przejścia dla pieszych"></td>
+                            <td>Niewłaściwe korzystanie z przejścia dla pieszych</td>
+                            <td>$75</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const tabs = document.querySelectorAll(".tab-link");
+        const tabContents = document.querySelectorAll(".tab-content");
+
+        tabs.forEach((tab, index) => {
+            tab.addEventListener("click", function (e) {
+                e.preventDefault();
+
+                tabs.forEach(t => t.classList.remove("active"));
+                tabContents.forEach(content => content.classList.remove("active"));
+
+                this.classList.add("active");
+                tabContents[index].classList.add("active");
+            });
+        });
+    </script>
+
+</body>
+
+</html>
